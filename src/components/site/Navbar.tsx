@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { BookingDialog } from "./BookingDialog";
 
 const links = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
-  { label: "Success Stories", href: "#stories" },
-  { label: "Resources", href: "#resources" },
+  { label: "Stories", href: "#stories" },
+  { label: "Sectors", href: "#resources" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -26,7 +27,7 @@ export function Navbar() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/70 backdrop-blur-xl border-b border-black/5 text-[#111]"
+          ? "bg-white/75 backdrop-blur-xl border-b border-black/5 text-[#111]"
           : "bg-transparent text-white"
       }`}
     >
@@ -38,31 +39,25 @@ export function Navbar() {
         <ul className="hidden lg:flex items-center gap-1">
           {links.map((l) => (
             <li key={l.label}>
-              <a
-                href={l.href}
-                className="relative px-4 py-2 text-sm rounded-full opacity-80 hover:opacity-100 transition-opacity group"
-              >
+              <a href={l.href} className="relative px-4 py-2 text-sm rounded-full opacity-75 hover:opacity-100 transition-opacity group">
                 {l.label}
                 <span className="absolute left-4 right-4 -bottom-0.5 h-px scale-x-0 group-hover:scale-x-100 origin-left transition-transform bg-current" />
               </a>
             </li>
           ))}
         </ul>
-        <a
-          href="#contact"
-          className={`group inline-flex items-center gap-2 rounded-full pl-4 pr-2 py-2 text-sm font-medium transition-all duration-300 ${
-            scrolled
-              ? "bg-[#111] text-white hover:bg-black"
-              : "bg-white/10 text-white hover:bg-white/20 border border-white/15"
-          }`}
-        >
-          Book a Strategy Conversation
-          <span className={`inline-flex h-7 w-7 items-center justify-center rounded-full transition-transform group-hover:translate-x-0.5 ${
-            scrolled ? "bg-white text-black" : "bg-white text-black"
-          }`}>
-            →
-          </span>
-        </a>
+        <BookingDialog>
+          <button
+            className={`group inline-flex items-center gap-2 rounded-full pl-4 pr-2 py-2 text-sm font-medium transition-all duration-300 ${
+              scrolled
+                ? "bg-[#111] text-white hover:bg-[#a855f7] hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.7)]"
+                : "bg-white/10 text-white hover:bg-white/20 border border-white/15"
+            }`}
+          >
+            Book a Call
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-black transition-transform group-hover:translate-x-0.5">→</span>
+          </button>
+        </BookingDialog>
       </nav>
     </motion.header>
   );
