@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { BookingDialog } from "./BookingDialog";
+import { SignupDialog } from "./SignupDialog";
+import { LoginDialog } from "./LoginDialog";
 
 const links = [
   { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Stories", href: "#stories" },
-  { label: "Sectors", href: "#resources" },
+  { label: "Market", href: "#market" },
+  { label: "Strategy", href: "#strategy" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -46,18 +45,25 @@ export function Navbar() {
             </li>
           ))}
         </ul>
-        <BookingDialog>
-          <button
-            className={`group inline-flex items-center gap-2 rounded-full pl-4 pr-2 py-2 text-sm font-medium transition-all duration-300 ${
-              scrolled
-                ? "bg-[#111] text-white hover:bg-[#a855f7] hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.7)]"
-                : "bg-white/10 text-white hover:bg-white/20 border border-white/15"
-            }`}
-          >
-            Book a Call
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-black transition-transform group-hover:translate-x-0.5">→</span>
-          </button>
-        </BookingDialog>
+        <div className="flex items-center gap-4">
+          <LoginDialog>
+            <button className={`text-sm font-medium transition-opacity hover:opacity-75 ${scrolled ? "text-[#111]" : "text-white"}`}>
+              Login
+            </button>
+          </LoginDialog>
+          <SignupDialog>
+            <button
+              className={`group inline-flex items-center gap-2 rounded-full pl-4 pr-2 py-2 text-sm font-medium transition-all duration-300 ${
+                scrolled
+                  ? "bg-[#111] text-white hover:bg-[#a855f7] hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.7)]"
+                  : "bg-white/10 text-white hover:bg-white/20 border border-white/15"
+              }`}
+            >
+              Get Started
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-black transition-transform group-hover:translate-x-0.5">→</span>
+            </button>
+          </SignupDialog>
+        </div>
       </nav>
     </motion.header>
   );

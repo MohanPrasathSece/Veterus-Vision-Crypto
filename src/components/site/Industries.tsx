@@ -27,7 +27,7 @@ export function Industries() {
             Built for the businesses we know best.
           </h2>
           <p className="mt-5 text-[#6b7280] text-base lg:text-lg">
-            We work exclusively with engineering-led companies — high-trust, high-complexity, high-stakes.
+            We work exclusively with engineering-led companies - high-trust, high-complexity, high-stakes.
           </p>
         </div>
 

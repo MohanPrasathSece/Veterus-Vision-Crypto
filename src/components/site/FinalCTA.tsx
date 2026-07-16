@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
-import { BookingDialog } from "./BookingDialog";
-import { DiagnosticDialog } from "./DiagnosticDialog";
+import { ContactForm } from "./ContactForm";
 
 export function FinalCTA() {
   return (
@@ -35,13 +34,8 @@ export function FinalCTA() {
           A focused conversation. A clear picture of where you are. A defined route to where you want to be.
         </p>
 
-        <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-          <BookingDialog>
-            <button className="btn-premium">Schedule Your Call <span className="arrow">→</span></button>
-          </BookingDialog>
-          <DiagnosticDialog>
-            <button className="btn-ghost-glow">Take the Diagnostic</button>
-          </DiagnosticDialog>
+        <div className="mt-10">
+          <ContactForm />
         </div>
       </div>
     </section>

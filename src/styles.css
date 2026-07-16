@@ -1,7 +1,8 @@
 @import "tailwindcss" source(none);
-@source "../src";
 @import "tw-animate-css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+@source "../src";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -120,7 +121,7 @@
     color: transparent;
   }
 
-  /* Premium button — light pill with sliding fill */
+  /* Premium button - light pill with sliding fill */
   .btn-premium {
     position: relative;
     display: inline-flex;

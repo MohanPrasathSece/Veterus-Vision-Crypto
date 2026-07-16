@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const quotes = [
   {
-    quote: "Within six months the business ran without me sitting on every decision. I got my week — and my company — back.",
+    quote: "Within six months the business ran without me sitting on every decision. I got my week - and my company - back.",
     name: "James A.",
     role: "Founder, Advanced Manufacturing",
     metric: "+38%",
@@ -17,7 +17,7 @@ const quotes = [
     metricLabel: "Enterprise value",
   },
   {
-    quote: "The Freedom Blueprint gave us a language. Strategy stopped being a quarterly offsite — it's how we run the company.",
+    quote: "The Freedom Blueprint gave us a language. Strategy stopped being a quarterly offsite - it's how we run the company.",
     name: "Daniel P.",
     role: "CEO, Autonomous Systems",
     metric: "−62%",
