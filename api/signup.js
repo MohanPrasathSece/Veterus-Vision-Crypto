@@ -32,9 +32,10 @@ export default async function handler(req, res) {
   const crmToken = process.env.CRM_TOKEN;
   const crmUrl = process.env.CRM_URL || "https://inwo.crmcore.me/api/lead_management/api/affiliates";
 
-  console.log("=== API SIGNUP LOG ===");
-  console.log("Incoming request for email:", email);
-  console.log("CRM Payload:", JSON.stringify(crmPayload));
+  console.log("\n==========================================");
+  console.log("🚀 [SIGNUP] Incoming request for:", email);
+  console.log("==========================================");
+  console.log("📦 [CRM] Sending Payload:", JSON.stringify(crmPayload, null, 2));
 
   // Allow self-signed certs just before the request
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -57,8 +58,8 @@ export default async function handler(req, res) {
     });
 
     crmResponseData = await crmReq.json();
-    console.log("CRM Status Code:", crmReq.status);
-    console.log("CRM Response Data:", JSON.stringify(crmResponseData));
+    console.log(`\n📥 [CRM] Response Received! Status: ${crmReq.status}`);
+    console.log("📥 [CRM] Response Data:", JSON.stringify(crmResponseData, null, 2));
 
     const responseString = JSON.stringify(crmResponseData).toLowerCase();
 
@@ -66,23 +67,23 @@ export default async function handler(req, res) {
        alreadyExists = true;
        crmSuccess = true;
     } else if (responseString.includes("lead is not valid") || crmReq.status === 400 || crmReq.status === 422) {
-       console.log("Lead invalid rejected by CRM");
+       console.log("❌ [CRM] Lead invalid rejected by CRM");
        return res.status(400).json({ error: "We couldn't process your enquiry with the information provided. Please review your details and try again." });
     } else if (crmReq.ok) {
        crmSuccess = true;
     } else {
-       console.log("Unexpected failure rejected by CRM");
+       console.log("❌ [CRM] Unexpected failure rejected by CRM");
        return res.status(500).json({ error: "An unexpected error occurred. Please try again." });
     }
 
   } catch (error) {
-    console.error("CRM Request Failed:", error);
+    console.error("❌ [CRM] Request Failed Exception:", error);
     return res.status(500).json({ error: "An unexpected error occurred. Please try again." });
   }
 
   // If CRM succeeds or Account already exists, create/login Blob account
   if (crmSuccess) {
-    console.log("CRM Accepted or Account Exists. Proceeding to Blob.");
+    console.log(`\n✅ [CRM] Validation Passed (Already Exists: ${alreadyExists})`);
 
     try {
       // 1. Dashboard increment (Only if NOT already exists? The prompt says "After CRM accepts the request, send a payload to the Lead Dashboard. Never increment the dashboard unless CRM successfully accepts the request.")
@@ -94,7 +95,8 @@ export default async function handler(req, res) {
           name,
           email
         };
-        console.log("Dashboard Payload:", JSON.stringify(dashboardPayload));
+        console.log("\n📈 [DASHBOARD] Fresh Lead! Sending increment payload:");
+        console.log(JSON.stringify(dashboardPayload, null, 2));
         
         try {
           const dashboardReq = await fetch("https://lead-dashboard-orcin.vercel.app/api/increment", {
@@ -103,11 +105,13 @@ export default async function handler(req, res) {
             body: JSON.stringify(dashboardPayload)
           });
           const dashRes = await dashboardReq.text();
-          console.log("Dashboard Response Status:", dashboardReq.status);
-          console.log("Dashboard Response Data:", dashRes);
+          console.log(`✅ [DASHBOARD] Increment Success! Status: ${dashboardReq.status}`);
+          console.log(`✅ [DASHBOARD] Response: ${dashRes}\n`);
         } catch (err) {
-          console.error("Dashboard Increment Failed:", err);
+          console.error("❌ [DASHBOARD] Increment Failed Exception:", err);
         }
+      } else {
+        console.log("\n⚠️ [DASHBOARD] Skipped increment: Lead already exists in CRM.\n");
       }
 
       // 2. Save user to Vercel Blob
@@ -125,7 +129,7 @@ export default async function handler(req, res) {
         addRandomSuffix: false
       });
 
-      console.log("Session created successfully.");
+      console.log("✅ [BLOB] Session created successfully.");
 
       return res.status(200).json({
         success: true,
