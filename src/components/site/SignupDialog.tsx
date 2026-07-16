@@ -84,13 +84,16 @@ export function SignupDialog({ children }: { children: ReactNode }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[420px] p-0 overflow-hidden bg-[#050505] border-white/10 sm:rounded-2xl">
-        <div className="relative text-white p-8 pb-4">
+      <DialogContent className="w-[95vw] sm:max-w-[420px] p-0 overflow-hidden bg-[#050505] border-white/10 rounded-2xl sm:rounded-2xl">
+        <button type="button" onClick={() => setOpen(false)} className="absolute right-4 top-4 z-50 text-white/40 hover:text-white transition-colors">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <div className="relative text-white p-6 sm:p-8 pb-3 sm:pb-4">
           <div className="relative">
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#d8b4fe] font-medium">Get Started</span>
-            <DialogHeader className="mt-3 text-left">
-              <DialogTitle className="font-display text-3xl tracking-tight">Create Account</DialogTitle>
-              <DialogDescription className="text-white/60 mt-1.5 text-sm">
+            <DialogHeader className="mt-2 sm:mt-3 text-left">
+              <DialogTitle className="font-display text-2xl sm:text-3xl tracking-tight">Create Account</DialogTitle>
+              <DialogDescription className="text-white/60 mt-1 sm:mt-1.5 text-xs sm:text-sm">
                 Join to access your strategic dashboard.
               </DialogDescription>
             </DialogHeader>
@@ -99,7 +102,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
 
         <form
           onSubmit={onSubmit}
-          className="p-8 pt-2 space-y-5 text-white"
+          className="p-6 sm:p-8 pt-1 sm:pt-2 space-y-3.5 sm:space-y-5 text-white"
         >
           <Field label="Full name" error={errors.name}>
             <Input 
@@ -118,7 +121,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
               placeholder="jane@example.com" 
             />
           </Field>
-          <div className="grid grid-cols-[100px_1fr] gap-3 items-start">
+          <div className="grid grid-cols-[90px_1fr] sm:grid-cols-[100px_1fr] gap-2 sm:gap-3 items-start">
             <Field label="Country">
               <CountrySelect value={form.country} onChange={(val) => setForm({ ...form, country: val })} />
             </Field>

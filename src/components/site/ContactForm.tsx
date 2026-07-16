@@ -61,10 +61,10 @@ export function ContactForm({ variant = "light" }: { variant?: "light" | "dark" 
   const isDark = variant === "dark";
 
   return (
-    <form onSubmit={onSubmit} className={`w-full max-w-md mx-auto text-left space-y-4 p-6 rounded-2xl border shadow-xl relative z-10 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-black/5'}`}>
+    <form onSubmit={onSubmit} className={`w-[95%] sm:w-full max-w-md mx-auto text-left space-y-3 sm:space-y-4 p-4 sm:p-6 rounded-2xl border shadow-xl relative z-10 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-black/5'}`}>
       <Field label="Full name" error={errors.name} isDark={isDark}>
         <Input 
-          className={`h-10 ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
+          className={`h-9 sm:h-10 text-sm ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
           value={form.name} 
           onChange={(e) => setForm({ ...form, name: e.target.value })} 
           placeholder="Jane Carter" 
@@ -72,20 +72,20 @@ export function ContactForm({ variant = "light" }: { variant?: "light" | "dark" 
       </Field>
       <Field label="Email address" error={errors.email} isDark={isDark}>
         <Input 
-          className={`h-10 ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
+          className={`h-9 sm:h-10 text-sm ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
           type="email" 
           value={form.email} 
           onChange={(e) => setForm({ ...form, email: e.target.value })} 
           placeholder="jane@example.com" 
         />
       </Field>
-      <div className="grid grid-cols-1 sm:grid-cols-[110px_1fr] gap-3 items-start">
+      <div className="grid grid-cols-1 sm:grid-cols-[110px_1fr] gap-2 sm:gap-3 items-start">
         <Field label="Country" isDark={isDark}>
           <CountrySelect value={form.country} onChange={(val) => setForm({ ...form, country: val })} variant={variant} />
         </Field>
         <Field label="Phone number" error={errors.phone} isDark={isDark}>
           <Input 
-            className={`h-10 ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
+            className={`h-9 sm:h-10 text-sm ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
             type="tel" 
             value={form.phone} 
             onChange={(e) => setForm({ ...form, phone: e.target.value })} 
@@ -95,7 +95,7 @@ export function ContactForm({ variant = "light" }: { variant?: "light" | "dark" 
       </div>
       <Field label="Message (Optional)" isDark={isDark}>
         <Textarea 
-          className={`min-h-[80px] ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
+          className={`min-h-[60px] sm:min-h-[80px] text-sm ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
           value={form.message} 
           onChange={(e) => setForm({ ...form, message: e.target.value })} 
           placeholder="How can we help?" 

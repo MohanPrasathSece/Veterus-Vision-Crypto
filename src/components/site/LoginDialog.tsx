@@ -2,7 +2,6 @@ import { useState, type ReactNode } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -69,14 +68,15 @@ export function LoginDialog({ children }: { children: ReactNode }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[400px] p-0 overflow-hidden bg-[#050505]/60 backdrop-blur-3xl border-white/10 shadow-[0_0_80px_rgba(168,85,247,0.15)] sm:rounded-2xl">
-        <div className="relative text-white p-8 pb-4">
-          <div className="absolute -top-20 -left-20 h-56 w-56 rounded-full bg-[#7e22ce]/30 blur-[80px]" />
-          <div className="absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-[#a855f7]/20 blur-[80px]" />
+      <DialogContent className="w-[95vw] sm:max-w-[400px] p-0 overflow-hidden bg-[#050505] border-white/10 rounded-2xl sm:rounded-2xl">
+        <button type="button" onClick={() => setOpen(false)} className="absolute right-4 top-4 z-50 text-white/40 hover:text-white transition-colors">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <div className="relative text-white p-6 sm:p-8 pb-4">
           <div className="relative">
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#d8b4fe] font-medium">Welcome Back</span>
             <DialogHeader className="mt-3 text-left">
-              <DialogTitle className="font-display text-3xl tracking-tight">Login</DialogTitle>
+              <DialogTitle className="font-display text-2xl sm:text-3xl tracking-tight">Login</DialogTitle>
               <DialogDescription className="text-white/60 mt-1.5 text-sm">
                 Enter your email to access the platform.
               </DialogDescription>
@@ -84,11 +84,9 @@ export function LoginDialog({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        <motion.form
+        <form
           onSubmit={onSubmit}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative p-8 pt-2 space-y-5 text-white"
+          className="relative p-6 sm:p-8 pt-2 space-y-4 sm:space-y-5 text-white"
         >
           <Field label="Email address" error={error}>
             <Input 
@@ -115,7 +113,7 @@ export function LoginDialog({ children }: { children: ReactNode }) {
           <p className="text-center text-xs text-white/40 mt-4">
             Don't have an account? <span className="underline cursor-pointer hover:text-white transition" onClick={() => { setOpen(false); setTimeout(() => window.dispatchEvent(new Event("open-signup")), 100); }}>Sign up instead</span>
           </p>
-        </motion.form>
+        </form>
       </DialogContent>
     </Dialog>
   );
