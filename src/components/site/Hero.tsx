@@ -26,19 +26,19 @@ function TypingIntro() {
 
 function TradingVisual() {
   return (
-    <div className="relative w-full h-[420px] lg:h-[520px]">
+    <div className="relative w-full h-[320px] sm:h-[420px] lg:h-[520px]">
       <div className="absolute inset-0 flex items-center justify-center">
         
         {/* Main Glass Chart Card */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}
-          className="relative w-[90%] h-[320px] rounded-3xl glass border border-white/10 p-6 flex flex-col justify-end gap-2 overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.15)]"
+          className="relative w-full sm:w-[90%] h-[240px] sm:h-[320px] rounded-2xl sm:rounded-3xl glass border border-white/10 p-4 sm:p-6 flex flex-col justify-end gap-2 overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.15)]"
         >
           {/* Header */}
           <div className="absolute top-6 left-6 right-6 flex justify-between items-center z-10">
             <div>
               <div className="text-[10px] uppercase tracking-widest text-white/50 mb-1">Portfolio Value</div>
-              <div className="text-white font-display text-2xl font-semibold">$1,482,904.50</div>
+              <div className="text-white font-display text-lg sm:text-2xl font-semibold">$1,482,904.50</div>
             </div>
             <div className="text-[#4ade80] bg-[#4ade80]/10 px-3 py-1 rounded-full text-xs font-semibold border border-[#4ade80]/20 flex items-center gap-1">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
@@ -114,7 +114,7 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#f7f7f5]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-32 lg:pt-36 pb-28 grid lg:grid-cols-12 gap-10 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 pt-24 sm:pt-32 lg:pt-36 pb-20 sm:pb-28 grid lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-7">
           <motion.div
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}

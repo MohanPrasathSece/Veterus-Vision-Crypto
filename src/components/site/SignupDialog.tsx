@@ -2,7 +2,6 @@ import { useState, type ReactNode } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { motion } from "motion/react";
 import { CountrySelect, getCountryByCode, formatPhoneForCRM, formatPhoneForBlob } from "./CountrySelect";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -85,10 +84,8 @@ export function SignupDialog({ children }: { children: ReactNode }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[420px] p-0 overflow-hidden bg-[#050505]/60 backdrop-blur-3xl border-white/10 shadow-[0_0_80px_rgba(168,85,247,0.15)] sm:rounded-2xl">
+      <DialogContent className="sm:max-w-[420px] p-0 overflow-hidden bg-[#050505] border-white/10 sm:rounded-2xl">
         <div className="relative text-white p-8 pb-4">
-          <div className="absolute -top-20 -left-20 h-56 w-56 rounded-full bg-[#7e22ce]/30 blur-[80px]" />
-          <div className="absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-[#a855f7]/20 blur-[80px]" />
           <div className="relative">
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#d8b4fe] font-medium">Get Started</span>
             <DialogHeader className="mt-3 text-left">
@@ -100,11 +97,9 @@ export function SignupDialog({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        <motion.form
+        <form
           onSubmit={onSubmit}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative p-8 pt-2 space-y-5 text-white max-h-[70vh] overflow-y-auto custom-scrollbar"
+          className="p-8 pt-2 space-y-5 text-white"
         >
           <Field label="Full name" error={errors.name}>
             <Input 
@@ -159,7 +154,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
           <p className="text-center text-xs text-white/40 mt-2">
             By continuing, you agree to our <a href="/terms" className="underline hover:text-white">Terms</a> and <a href="/privacy" className="underline hover:text-white">Privacy Policy</a>.
           </p>
-        </motion.form>
+        </form>
       </DialogContent>
     </Dialog>
   );

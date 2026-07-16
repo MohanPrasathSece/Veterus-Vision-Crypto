@@ -28,12 +28,12 @@ export function MarketAnalysis() {
   });
 
   return (
-    <section id="market" className="relative py-32 bg-[#f7f7f5] text-[#111] border-t border-black/5" ref={containerRef}>
+    <section id="market" className="relative py-20 lg:py-32 bg-[#f7f7f5] text-[#111] border-t border-black/5" ref={containerRef}>
       {/* Background gradients */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#7e22ce]/20 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-[#a855f7]/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="text-[10px] uppercase tracking-[0.3em] text-[#d8b4fe] font-medium block mb-4">The Challenge</span>
           <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.1]">

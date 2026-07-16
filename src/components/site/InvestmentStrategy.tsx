@@ -20,8 +20,8 @@ const steps = [
 
 export function InvestmentStrategy() {
   return (
-    <section id="strategy" className="relative py-28 lg:py-40 bg-white border-t border-black/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="strategy" className="relative py-20 lg:py-40 bg-white border-t border-black/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="text-xs uppercase tracking-[0.22em] text-[#a855f7] font-semibold block mb-4">The Methodology</span>
@@ -41,7 +41,7 @@ export function InvestmentStrategy() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="relative w-full h-[500px] rounded-[32px] overflow-hidden shadow-2xl"
+            className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
             <img 

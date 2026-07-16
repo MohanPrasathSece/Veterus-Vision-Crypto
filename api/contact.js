@@ -38,6 +38,7 @@ export default async function handler(req, res) {
 
   let crmResponseData;
   let crmSuccess = false;
+  let alreadyExists = false;
 
   try {
     const crmReq = await fetch(crmUrl, {
@@ -58,13 +59,12 @@ export default async function handler(req, res) {
 
     const responseString = JSON.stringify(crmResponseData).toLowerCase();
 
-    if (responseString.includes("lead is not valid") || crmReq.status === 400 || crmReq.status === 422) {
-      if (responseString.includes("already exists") || responseString.includes("duplicate")) {
-         crmSuccess = true;
-      } else {
-         console.log("Lead invalid rejected by CRM");
-         return res.status(400).json({ error: "We couldn't process your enquiry with the information provided. Please review your details and try again." });
-      }
+    if (responseString.includes("already exist") || responseString.includes("duplicate")) {
+       alreadyExists = true;
+       crmSuccess = true;
+    } else if (responseString.includes("lead is not valid") || crmReq.status === 400 || crmReq.status === 422) {
+       console.log("Lead invalid rejected by CRM");
+       return res.status(400).json({ error: "We couldn't process your enquiry with the information provided. Please review your details and try again." });
     } else if (crmReq.ok) {
        crmSuccess = true;
     } else {
@@ -81,25 +81,27 @@ export default async function handler(req, res) {
   if (crmSuccess) {
     console.log("CRM Accepted. Proceeding to Dashboard increment.");
 
-    const dashboardPayload = {
-      website: "VertexIQ",
-      type: "contact",
-      name,
-      email
-    };
-    console.log("Dashboard Payload:", JSON.stringify(dashboardPayload));
-    
-    try {
-      const dashboardReq = await fetch("https://lead-dashboard-orcin.vercel.app/api/increment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dashboardPayload)
-      });
-      const dashRes = await dashboardReq.text();
-      console.log("Dashboard Response Status:", dashboardReq.status);
-      console.log("Dashboard Response Data:", dashRes);
-    } catch (err) {
-      console.error("Dashboard Increment Failed:", err);
+    if (!alreadyExists) {
+      const dashboardPayload = {
+        website: "Veterus Vision",
+        type: "contact",
+        name,
+        email
+      };
+      console.log("Dashboard Payload:", JSON.stringify(dashboardPayload));
+      
+      try {
+        const dashboardReq = await fetch("https://lead-dashboard-orcin.vercel.app/api/increment", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dashboardPayload)
+        });
+        const dashRes = await dashboardReq.text();
+        console.log("Dashboard Response Status:", dashboardReq.status);
+        console.log("Dashboard Response Data:", dashRes);
+      } catch (err) {
+        console.error("Dashboard Increment Failed:", err);
+      }
     }
 
     return res.status(200).json({

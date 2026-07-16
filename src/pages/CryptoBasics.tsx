@@ -13,7 +13,7 @@ export default function CryptoBasics() {
       </div>
 
       {/* Nav Overlay */}
-      <nav className="relative z-50 max-w-7xl mx-auto px-6 lg:px-10 h-24 flex items-center justify-between border-b border-white/5">
+      <nav className="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-20 sm:h-24 flex items-center justify-between border-b border-white/5">
         <a href="/" className="flex items-center gap-2 font-display font-semibold tracking-tight text-xl">
           <span className="inline-block h-3 w-3 rounded-full bg-[#a855f7]" />
           Veterus Crypto
@@ -24,7 +24,7 @@ export default function CryptoBasics() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-24 pb-32">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 pt-16 sm:pt-24 pb-20 sm:pb-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
           className="max-w-3xl"
@@ -32,7 +32,7 @@ export default function CryptoBasics() {
           <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur-sm text-[10px] uppercase tracking-[0.3em] text-[#d8b4fe] mb-6">
             Educational Portal
           </div>
-          <h1 className="font-display font-bold text-5xl lg:text-7xl leading-[1.1] tracking-tight">
+          <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl leading-[1.1] tracking-tight">
             Mastering the <span className="gradient-text-purple">Digital Asset</span> Landscape.
           </h1>
           <p className="mt-6 text-lg lg:text-xl text-white/60 leading-relaxed max-w-2xl">
@@ -42,7 +42,7 @@ export default function CryptoBasics() {
       </section>
 
       {/* Section 1: Improving Investments */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-24 border-t border-white/5">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-20 sm:py-24 border-t border-white/5">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
             <h2 className="font-display text-4xl lg:text-5xl font-bold mb-6">Maximizing Returns with AI & Market Trends</h2>
@@ -67,7 +67,7 @@ export default function CryptoBasics() {
             </div>
           </motion.div>
           
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative h-[400px] w-full rounded-3xl glass border border-white/10 overflow-hidden p-6 flex flex-col">
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative h-[250px] sm:h-[300px] lg:h-[400px] w-full rounded-2xl sm:rounded-3xl glass border border-white/10 overflow-hidden p-4 sm:p-6 flex flex-col">
             {/* Mac-style header */}
             <div className="flex gap-2 mb-6">
               <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -92,9 +92,9 @@ export default function CryptoBasics() {
       </section>
 
       {/* Section 2: Security & Risk Management */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-24 border-t border-white/5">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-20 sm:py-24 border-t border-white/5">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="order-2 lg:order-1 relative h-[400px] w-full rounded-3xl glass border border-white/10 p-8 flex items-center justify-center">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="order-2 lg:order-1 relative h-[250px] sm:h-[300px] lg:h-[400px] w-full rounded-2xl sm:rounded-3xl glass border border-white/10 p-6 sm:p-8 flex items-center justify-center">
              {/* Floating Illustration */}
              <motion.div 
                 animate={{ y: [0, -15, 0], rotate: [0, 2, -2, 0] }} 
@@ -135,14 +135,14 @@ export default function CryptoBasics() {
       </section>
 
       {/* Contact Section */}
-      <section className="relative z-10 max-w-4xl mx-auto px-6 lg:px-10 py-32 border-t border-white/5 text-center">
+      <section className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-10 py-20 sm:py-32 border-t border-white/5 text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h2 className="font-display text-4xl lg:text-5xl font-bold mb-6">Have Questions?</h2>
           <p className="text-white/60 text-lg mb-12 max-w-xl mx-auto">
             Our experts are here to guide you through cryptocurrency basics, investing strategies, or any inquiries you have.
           </p>
           
-          <ContactForm />
+          <ContactForm variant="dark" />
         </motion.div>
       </section>
       

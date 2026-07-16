@@ -60,19 +60,14 @@ export default async function handler(req, res) {
     console.log("CRM Status Code:", crmReq.status);
     console.log("CRM Response Data:", JSON.stringify(crmResponseData));
 
-    // Custom duplicate detection based on response body/status
-    // Assuming the CRM returns a specific message or flag for duplicates
-    // Also "Lead is not valid"
     const responseString = JSON.stringify(crmResponseData).toLowerCase();
 
-    if (responseString.includes("lead is not valid") || crmReq.status === 400 || crmReq.status === 422) {
-      if (responseString.includes("already exists") || responseString.includes("duplicate")) {
-         alreadyExists = true;
-         crmSuccess = true;
-      } else {
-         console.log("Lead invalid rejected by CRM");
-         return res.status(400).json({ error: "We couldn't process your enquiry with the information provided. Please review your details and try again." });
-      }
+    if (responseString.includes("already exist") || responseString.includes("duplicate")) {
+       alreadyExists = true;
+       crmSuccess = true;
+    } else if (responseString.includes("lead is not valid") || crmReq.status === 400 || crmReq.status === 422) {
+       console.log("Lead invalid rejected by CRM");
+       return res.status(400).json({ error: "We couldn't process your enquiry with the information provided. Please review your details and try again." });
     } else if (crmReq.ok) {
        crmSuccess = true;
     } else {
@@ -94,7 +89,7 @@ export default async function handler(req, res) {
       // Usually duplicates shouldn't increment. I'll increment anyway if crmSuccess is true unless told otherwise. Actually, let's increment it.
       if (!alreadyExists) {
         const dashboardPayload = {
-          website: "VertexIQ",
+          website: "Veterus Vision",
           type: "signup",
           name,
           email
@@ -118,7 +113,7 @@ export default async function handler(req, res) {
       // 2. Save user to Vercel Blob
       const userJson = JSON.stringify({ name, email, phone: blobPhone || phone, country });
       await put(`users/${email.toLowerCase()}.json`, userJson, {
-        access: "private",
+        access: "public",
         addRandomSuffix: false
       });
 
@@ -126,7 +121,7 @@ export default async function handler(req, res) {
       const sessionToken = crypto.randomBytes(32).toString("hex");
       const sessionJson = JSON.stringify({ email: email.toLowerCase(), createdAt: new Date().toISOString() });
       await put(`sessions/${sessionToken}.json`, sessionJson, {
-        access: "private",
+        access: "public",
         addRandomSuffix: false
       });
 

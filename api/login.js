@@ -39,7 +39,7 @@ export default async function handler(req, res) {
     const sessionToken = crypto.randomBytes(32).toString("hex");
     const sessionJson = JSON.stringify({ email: email.toLowerCase(), createdAt: new Date().toISOString() });
     await put(`sessions/${sessionToken}.json`, sessionJson, {
-      access: "private",
+      access: "public",
       addRandomSuffix: false
     });
 

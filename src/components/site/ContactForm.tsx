@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { CountrySelect, getCountryByCode, formatPhoneForCRM } from "./CountrySelect";
 
-export function ContactForm() {
+export function ContactForm({ variant = "light" }: { variant?: "light" | "dark" }) {
   const [form, setForm] = useState({ name: "", email: "", phone: "", country: "CH", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -58,32 +58,34 @@ export function ContactForm() {
     setSubmitting(false);
   };
 
+  const isDark = variant === "dark";
+
   return (
-    <form onSubmit={onSubmit} className="w-full max-w-md mx-auto text-left space-y-4 bg-white p-6 rounded-2xl border border-black/5 shadow-xl relative z-10">
-      <Field label="Full name" error={errors.name}>
+    <form onSubmit={onSubmit} className={`w-full max-w-md mx-auto text-left space-y-4 p-6 rounded-2xl border shadow-xl relative z-10 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-black/5'}`}>
+      <Field label="Full name" error={errors.name} isDark={isDark}>
         <Input 
-          className="bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280] h-10"
+          className={`h-10 ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
           value={form.name} 
           onChange={(e) => setForm({ ...form, name: e.target.value })} 
           placeholder="Jane Carter" 
         />
       </Field>
-      <Field label="Email address" error={errors.email}>
+      <Field label="Email address" error={errors.email} isDark={isDark}>
         <Input 
-          className="bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280] h-10"
+          className={`h-10 ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
           type="email" 
           value={form.email} 
           onChange={(e) => setForm({ ...form, email: e.target.value })} 
           placeholder="jane@example.com" 
         />
       </Field>
-      <div className="grid grid-cols-[110px_1fr] gap-3 items-start">
-        <Field label="Country">
-          <CountrySelect value={form.country} onChange={(val) => setForm({ ...form, country: val })} variant="light" />
+      <div className="grid grid-cols-1 sm:grid-cols-[110px_1fr] gap-3 items-start">
+        <Field label="Country" isDark={isDark}>
+          <CountrySelect value={form.country} onChange={(val) => setForm({ ...form, country: val })} variant={variant} />
         </Field>
-        <Field label="Phone number" error={errors.phone}>
+        <Field label="Phone number" error={errors.phone} isDark={isDark}>
           <Input 
-            className="bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280] h-10"
+            className={`h-10 ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
             type="tel" 
             value={form.phone} 
             onChange={(e) => setForm({ ...form, phone: e.target.value })} 
@@ -91,9 +93,9 @@ export function ContactForm() {
           />
         </Field>
       </div>
-      <Field label="Message (Optional)">
+      <Field label="Message (Optional)" isDark={isDark}>
         <Textarea 
-          className="bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280] min-h-[80px]"
+          className={`min-h-[80px] ${isDark ? 'bg-black/20 border-white/10 text-white placeholder:text-white/30' : 'bg-[#f7f7f5] border-black/5 text-[#111] placeholder:text-[#6b7280]'}`}
           value={form.message} 
           onChange={(e) => setForm({ ...form, message: e.target.value })} 
           placeholder="How can we help?" 
@@ -109,10 +111,10 @@ export function ContactForm() {
   );
 }
 
-function Field({ label, error, children }: { label: string; error?: string; children: ReactNode }) {
+function Field({ label, error, isDark, children }: { label: string; error?: string; isDark?: boolean; children: ReactNode }) {
   return (
     <label className="block">
-      <span className="text-[11px] uppercase tracking-[0.1em] text-[#6b7280] font-medium">{label}</span>
+      <span className={`text-[11px] uppercase tracking-[0.1em] font-medium ${isDark ? 'text-white/50' : 'text-[#6b7280]'}`}>{label}</span>
       <div className="mt-1">{children}</div>
       {error && <span className="mt-1 inline-block text-xs text-red-400">{error}</span>}
     </label>
