@@ -59,8 +59,12 @@ export default async function handler(req, res) {
     console.log("📥 [CRM] Response Data:", JSON.stringify(crmResponseData, null, 2));
 
     const responseString = JSON.stringify(crmResponseData).toLowerCase();
+    const errorMessage = typeof crmResponseData?.error === 'string' ? crmResponseData.error.toLowerCase() : '';
+    const isDuplicate = crmResponseData?.lead?.duplicate === true || 
+                        errorMessage.includes("already exist") || 
+                        errorMessage.includes("duplicate");
 
-    if (responseString.includes("already exist") || responseString.includes("duplicate")) {
+    if (isDuplicate) {
        alreadyExists = true;
        crmSuccess = true;
     } else if (responseString.includes("lead is not valid") || crmReq.status === 400 || crmReq.status === 422) {
