@@ -33,7 +33,7 @@ export function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between">
         <a href="#home" className="flex items-center gap-1.5 sm:gap-2 font-display font-semibold tracking-tight text-base sm:text-lg">
           <span className={`inline-block h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full ${scrolled ? "bg-[#a855f7]" : "bg-[#c084fc]"}`} />
-          Veterus
+          The Capital Space
         </a>
         <ul className="hidden lg:flex items-center gap-1">
           {links.map((l) => (

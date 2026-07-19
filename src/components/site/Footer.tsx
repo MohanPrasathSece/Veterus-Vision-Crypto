@@ -4,7 +4,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2 font-display font-semibold text-lg">
           <span className="h-2.5 w-2.5 rounded-full bg-gradient-to-br from-[#d8b4fe] to-[#a855f7]" />
-          Veterus Crypto
+          The Capital Space Crypto
         </div>
         
         <div className="flex gap-6 text-sm text-white/50">
@@ -13,7 +13,7 @@ export function Footer() {
         </div>
         
         <div className="text-sm text-white/40">
-          © {new Date().getFullYear()} Veterus. All rights reserved.
+          © {new Date().getFullYear()} The Capital Space. All rights reserved.
         </div>
       </div>
     </footer>

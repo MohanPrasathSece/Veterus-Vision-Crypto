@@ -88,7 +88,7 @@ export default async function handler(req, res) {
 
     if (!alreadyExists) {
       const dashboardPayload = {
-        website: "Veterus Vision",
+        website: "The Capital Space",
         type: "contact",
         name,
         email

@@ -16,7 +16,7 @@ export default function CryptoBasics() {
       <nav className="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-20 sm:h-24 flex items-center justify-between border-b border-white/5">
         <a href="/" className="flex items-center gap-2 font-display font-semibold tracking-tight text-xl">
           <span className="inline-block h-3 w-3 rounded-full bg-[#a855f7]" />
-          Veterus Crypto
+          The Capital Space Crypto
         </a>
         <a href="/" className="text-sm font-medium text-white/60 hover:text-white transition-colors">
           Logout
@@ -148,7 +148,7 @@ export default function CryptoBasics() {
       
       {/* Footer minimal */}
       <footer className="border-t border-white/5 py-8 text-center text-sm text-white/40">
-         <p>&copy; {new Date().getFullYear()} Veterus. All rights reserved.</p>
+         <p>&copy; {new Date().getFullYear()} The Capital Space. All rights reserved.</p>
          <div className="flex justify-center gap-4 mt-4">
            <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
            <a href="/terms" className="hover:text-white transition-colors">Terms & Conditions</a>

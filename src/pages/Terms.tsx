@@ -42,12 +42,12 @@ export default function Terms() {
 
           <section>
             <h2 className="text-2xl font-bold">7. Intellectual Property</h2>
-            <p>All content, branding, designs, and materials on this website are the intellectual property of Veterus and are protected by applicable copyright and trademark laws.</p>
+            <p>All content, branding, designs, and materials on this website are the intellectual property of The Capital Space and are protected by applicable copyright and trademark laws.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold">8. Limitation of Liability</h2>
-            <p>Under no circumstances shall Veterus or its directors, employees, or affiliates be liable for any direct, indirect, incidental, consequential, special, or exemplary damages arising out of or in connection with your access or use of our website or services.</p>
+            <p>Under no circumstances shall The Capital Space or its directors, employees, or affiliates be liable for any direct, indirect, incidental, consequential, special, or exemplary damages arising out of or in connection with your access or use of our website or services.</p>
           </section>
 
           <section>

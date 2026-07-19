@@ -13,12 +13,12 @@ export function About() {
           className="lg:col-span-5 relative"
         >
           <div className="relative rounded-[28px] overflow-hidden border border-black/5 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.35)] aspect-[4/5]">
-            <img src={founder} alt="Brad - Founder of Veterus Business Growth" width={896} height={1152} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+            <img src={founder} alt="Brad - Founder of The Capital Space Business Growth" width={896} height={1152} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-7">
               <div className="text-white/70 text-[10px] uppercase tracking-[0.3em]">Founder</div>
               <div className="text-white font-display text-3xl mt-2">Brad</div>
-              <div className="text-white/60 text-sm mt-1">Veterus Business Growth</div>
+              <div className="text-white/60 text-sm mt-1">The Capital Space Business Growth</div>
             </div>
             <div className="absolute -top-6 -right-6 h-24 w-24 rounded-full bg-gradient-to-br from-[#c084fc] to-[#a855f7] blur-2xl opacity-70 floaty" />
             <div className="absolute -bottom-4 -left-4 h-16 w-16 rounded-full bg-gradient-to-br from-[#f7b6d2] to-[#b7b5ff] blur-xl floaty-slow" />
@@ -35,7 +35,7 @@ export function About() {
             25 years inside engineering-led organisations like yours.
           </h2>
           <p className="mt-6 text-[#6b7280] text-base lg:text-lg max-w-2xl leading-relaxed">
-            From the Royal Navy to boardrooms across engineering, defence and advanced manufacturing - I've operated, scaled and advised the kind of business you're building. Veterus exists to give technical founders a strategic partner who actually understands the machine.
+            From the Royal Navy to boardrooms across engineering, defence and advanced manufacturing - I've operated, scaled and advised the kind of business you're building. The Capital Space exists to give technical founders a strategic partner who actually understands the machine.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-2">
