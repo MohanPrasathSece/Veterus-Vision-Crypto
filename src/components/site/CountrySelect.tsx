@@ -21,7 +21,9 @@ export const countries = [
   { code: "BR", name: "Brazil", dialCode: "+55", regex: /^(\+55|0055)?\s?\(?[1-9]{2}\)?\s?9\d{4}-?\d{4}$/, example: "+55 11 91234-5678" },
   { code: "MX", name: "Mexico", dialCode: "+52", regex: /^(\+52|0052)?\s?1?\s?\d{10}$/, example: "+52 55 1234 5678" },
   { code: "JP", name: "Japan", dialCode: "+81", regex: /^(\+81|0081|0)?\s?[789]0-?\d{4}-?\d{4}$/, example: "+81 90-1234-5678" },
-  { code: "CY", name: "Cyprus", dialCode: "+357", regex: /^(\+357|00357)?\s?[9]\d{7}$/, example: "+357 99 123456" }
+  { code: "CY", name: "Cyprus", dialCode: "+357", regex: /^(\+357|00357)?\s?[9]\d{7}$/, example: "+357 99 123456" },
+  { code: "IE", name: "Ireland", dialCode: "+353", example: "+353 87 123 4567", regex: /^[89]\d{7,8}$/ },
+  { code: "GBR", name: "Great Britain", dialCode: "+44", example: "+44 7700 900077", regex: /^7\d{9}$/ },
 ];
 
 export function getCountryByCode(code: string) {
