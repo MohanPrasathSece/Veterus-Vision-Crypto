@@ -49,7 +49,7 @@ export function ContactForm({ variant = "light" }: { variant?: "light" | "dark" 
       if (!response.ok) {
         toast.error("Error", { description: data.error || "Please check your details and try again." });
       } else {
-        toast.success("Success", { description: data.message });
+        toast.success("Thank you for contacting us. Your message has been received, and our team will get back to you shortly.");
         setForm({ name: "", email: "", phone: "", country: "CH", message: "" });
       }
     } catch (err) {
