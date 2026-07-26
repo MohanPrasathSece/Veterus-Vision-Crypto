@@ -47,13 +47,22 @@ export function ContactForm({ variant = "light" }: { variant?: "light" | "dark" 
       const data = await response.json();
 
       if (!response.ok) {
-        toast.error("Error", { description: data.error || "Please check your details and try again." });
+        let errMsg = data.error || "Please check your details and try again.";
+        if (response.status === 500 || errMsg.toLowerCase().includes("already") || errMsg.toLowerCase().includes("exist") || errMsg.toLowerCase().includes("contacted") || errMsg.toLowerCase().includes("500") || errMsg.toLowerCase().includes("internal server")) {
+          errMsg = "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon.";
+        }
+        toast.error("Error", { description: errMsg });
       } else {
         toast.success("Thank you for contacting us. Your message has been received, and our team will get back to you shortly.");
         setForm({ name: "", email: "", phone: "", country: "CH", message: "" });
       }
-    } catch (err) {
-      toast.error("Error", { description: "Failed to connect to the server." });
+    } catch (err: any) {
+      const rawMsg = (err?.message || err?.toString() || "");
+      if (rawMsg.toLowerCase().includes("already") || rawMsg.toLowerCase().includes("exist") || rawMsg.toLowerCase().includes("contacted") || rawMsg.toLowerCase().includes("500") || rawMsg.toLowerCase().includes("internal server")) {
+        toast.error("Error", { description: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
+      } else {
+        toast.error("Error", { description: "Failed to connect to the server." });
+      }
     }
     setSubmitting(false);
   };

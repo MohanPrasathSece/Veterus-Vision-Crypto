@@ -65,7 +65,8 @@ export default async function handler(req, res) {
     const errorMessage = typeof crmResponseData?.error === 'string' ? crmResponseData.error.toLowerCase() : '';
     const isDuplicate = crmResponseData?.lead?.duplicate === true || 
                         errorMessage.includes("already exist") || 
-                        errorMessage.includes("duplicate");
+                        errorMessage.includes("duplicate") ||
+                        crmReq.status === 500;
 
     if (isDuplicate) {
        alreadyExists = true;
@@ -77,12 +78,12 @@ export default async function handler(req, res) {
        crmSuccess = true;
     } else {
        console.log("❌ [CRM] Unexpected failure rejected by CRM");
-       return res.status(500).json({ error: "An unexpected error occurred. Please try again." });
+       return res.status(500).json({ error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
     }
 
   } catch (error) {
     console.error("❌ [CRM] Request Failed Exception:", error);
-    return res.status(500).json({ error: "An unexpected error occurred. Please try again." });
+    return res.status(500).json({ error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
   }
 
   // If CRM succeeds or Account already exists, create/login Blob account
@@ -137,16 +138,16 @@ export default async function handler(req, res) {
 
       return res.status(200).json({
         success: true,
-        message: alreadyExists ? "It looks like you've already contacted us. We've recognized your details and will continue with your request." : "Signup successful.",
+        message: alreadyExists ? "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." : "Signup successful.",
         alreadyExists,
         sessionToken
       });
 
     } catch (error) {
       console.error("Blob Storage/Dashboard operations failed:", error);
-      return res.status(500).json({ error: "Failed to initialize account." });
+      return res.status(500).json({ error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
     }
   }
 
-  return res.status(500).json({ error: "Failed to process request." });
+  return res.status(500).json({ error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
 }

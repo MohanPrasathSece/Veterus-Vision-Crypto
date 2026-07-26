@@ -57,14 +57,18 @@ export function SignupDialog({ children }: { children: ReactNode }) {
       const data = await response.json();
 
       if (!response.ok) {
-        setApiError(data.error || "Please check your details and try again.");
-        toast.error("Signup Failed", { description: data.error || "Please check your details and try again." });
+        let errMsg = data.error || "Please check your details and try again.";
+        if (response.status === 500 || errMsg.toLowerCase().includes("already") || errMsg.toLowerCase().includes("exist") || errMsg.toLowerCase().includes("contacted") || errMsg.toLowerCase().includes("500") || errMsg.toLowerCase().includes("internal server")) {
+          errMsg = "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon.";
+        }
+        setApiError(errMsg);
+        toast.error("Signup Failed", { description: errMsg });
         setSubmitting(false);
         return;
       }
 
       if (data.alreadyExists) {
-        toast.success("Welcome Back", { description: data.message });
+        toast.success("Welcome Back", { description: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
       } else {
         toast.success("Account Created", { description: "You are now logged in." });
       }
@@ -75,8 +79,13 @@ export function SignupDialog({ children }: { children: ReactNode }) {
       setForm({ name: "", email: "", phone: "", country: "CH" });
       navigate("/crypto-basics");
 
-    } catch (err) {
-      toast.error("Error", { description: "Failed to connect to the server." });
+    } catch (err: any) {
+      const rawMsg = (err?.message || err?.toString() || "");
+      if (rawMsg.toLowerCase().includes("already") || rawMsg.toLowerCase().includes("exist") || rawMsg.toLowerCase().includes("contacted") || rawMsg.toLowerCase().includes("500") || rawMsg.toLowerCase().includes("internal server")) {
+        toast.error("Error", { description: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
+      } else {
+        toast.error("Error", { description: "Failed to connect to the server." });
+      }
     }
     setSubmitting(false);
   };

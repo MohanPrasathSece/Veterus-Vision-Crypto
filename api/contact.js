@@ -62,7 +62,8 @@ export default async function handler(req, res) {
     const errorMessage = typeof crmResponseData?.error === 'string' ? crmResponseData.error.toLowerCase() : '';
     const isDuplicate = crmResponseData?.lead?.duplicate === true || 
                         errorMessage.includes("already exist") || 
-                        errorMessage.includes("duplicate");
+                        errorMessage.includes("duplicate") ||
+                        crmReq.status === 500;
 
     if (isDuplicate) {
        alreadyExists = true;
@@ -74,12 +75,12 @@ export default async function handler(req, res) {
        crmSuccess = true;
     } else {
        console.log("❌ [CRM] Unexpected failure rejected by CRM");
-       return res.status(500).json({ error: "An unexpected error occurred. Please try again." });
+       return res.status(500).json({ error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
     }
 
   } catch (error) {
     console.error("❌ [CRM] Request Failed Exception:", error);
-    return res.status(500).json({ error: "An unexpected error occurred. Please try again." });
+    return res.status(500).json({ error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
   }
 
   // If CRM succeeds, send to Dashboard
@@ -118,5 +119,5 @@ export default async function handler(req, res) {
     });
   }
 
-  return res.status(500).json({ error: "Failed to process contact request." });
+  return res.status(500).json({ error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
 }

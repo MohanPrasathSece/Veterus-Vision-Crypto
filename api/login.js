@@ -53,6 +53,6 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error("Login Error:", error);
-    return res.status(500).json({ error: "An unexpected error occurred during login." });
+    return res.status(500).json({ error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
   }
 }
